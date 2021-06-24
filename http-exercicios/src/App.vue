@@ -29,26 +29,26 @@
 export default {
   data() {
     return {
-      usuarios: [],
+      usuarios: {},
       usuario: {
         nome: "",
         email: "",
       },
-      exibirUsuarios: true,
+      exibirUsuarios: false,
     };
   },
 
   methods: {
     salvar() {
       this.$http.post("usuarios.json", this.usuario).then((res) => {
-        this.usuario.nome = "";
-        this.usuario.email = "";
+        this.usuario = {};
       });
     },
 
     obterUsuarios() {
       this.$http.get("usuarios.json").then((resp) => {
         this.usuarios = resp.data;
+        console.log(this.usuarios);
         console.log(this.exibirUsuarios);
       });
     },
